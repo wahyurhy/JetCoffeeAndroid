@@ -22,10 +22,7 @@ import com.wahyurhy.jetcoffee.model.Menu
 import com.wahyurhy.jetcoffee.model.dummyBestSellerMenu
 import com.wahyurhy.jetcoffee.model.dummyCategory
 import com.wahyurhy.jetcoffee.model.dummyMenu
-import com.wahyurhy.jetcoffee.ui.components.CategoryItem
-import com.wahyurhy.jetcoffee.ui.components.MenuItem
-import com.wahyurhy.jetcoffee.ui.components.SearchBar
-import com.wahyurhy.jetcoffee.ui.components.SectionText
+import com.wahyurhy.jetcoffee.ui.components.*
 import com.wahyurhy.jetcoffee.ui.theme.JetCoffeeTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,12 +45,18 @@ fun JetCoffeeApp() {
     ) {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Banner()
-            SectionText(title = stringResource(id = R.string.section_category))
-            CategoryRow()
-            SectionText(title = stringResource(id = R.string.section_favorite_menu))
-            MenuRow(listMenu = dummyMenu)
-            SectionText(title = stringResource(id = R.string.section_best_seller_menu))
-            MenuRow(listMenu = dummyBestSellerMenu)
+            HomeSection(
+                title = stringResource(id = R.string.section_category),
+                content = { CategoryRow() }
+            )
+            HomeSection(
+                title = stringResource(id = R.string.section_favorite_menu),
+                content = { MenuRow(listMenu = dummyMenu) }
+            )
+            HomeSection(
+                title = stringResource(id = R.string.section_best_seller_menu),
+                content = { MenuRow(listMenu = dummyBestSellerMenu) }
+            )
         }
     }
 }
